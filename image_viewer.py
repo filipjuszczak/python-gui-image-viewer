@@ -48,7 +48,7 @@ my_img6 = ImageTk.PhotoImage(my_img6)
 
 """
 Putting all images into a list so displaying images code will be easier to
-put together.
+put up together.
 """
 image_list = [
     my_img1,
