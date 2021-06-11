@@ -61,6 +61,7 @@ image_list = [
 
 # Creating a label which will display images.
 my_label = Label(image=my_img1)
+# Displaying the label on the window.
 my_label.grid(row=0, column=0, columnspan=3)
 
 # A global variable representing an index of the image_list image.
