@@ -10,20 +10,14 @@ https://www.pexels.com/photo/thoughtful-young-woman-sitting-near-window-4335608/
 https://www.pexels.com/photo/light-sea-city-dawn-7332786/
 """
 
-# Required imports.
 from tkinter import *
 from PIL import ImageTk, Image
 
-# Creating the main window.
 root = Tk()
-# Setting the window title.
 root.title('Image Viewer')
 
-# Creating image.
 my_img1 = Image.open('images/pexels-damian-barczak-8148690.jpg')
-# Resizing the image.
 my_img1 = my_img1.resize((400, 600), Image.ANTIALIAS)
-# Creating a photoimage to use in the program.
 my_img1 = ImageTk.PhotoImage(my_img1)
 
 my_img2 = Image.open("images/pexels-elijah-o'donnell-4335608.jpg")
@@ -59,7 +53,6 @@ image_list = [
     my_img6
 ]
 
-# A list of all file names.
 file_names = [
     'pexels-damian-barczak-8148690.jpg',
     "pexels-elijah-o'donnell-4335608.jpg",
@@ -69,14 +62,10 @@ file_names = [
     'pexels-gantas-vaiÄiulÄnas-7159608.jpg'
 ]
 
-# Creating a label which will display images.
 image_label = Label(image=my_img1)
-# Creating a label which will display file names.
 file_name_label = Label(root, text=file_names[0])
-# Creating a label which will display the image number.
 image_number = Label(root, text='Image 1 of {0}'.format(len(image_list)))
 
-# A global variable representing an index of the image_list image.
 index = 0
 
 
@@ -95,30 +84,21 @@ def change_image(change):
     next step, the program will display the previous image.
     """
     if change == 'b' and index - 1 >= 0:
-        # Remove the old image.
         image_label.grid_forget()
-        # Decrease index by 1.
         index -= 1
         """
         Re-create the label displaying images and display the previous 
         image in the list.
         """
         image_label = Label(image=image_list[index])
-        # Display the label on the window.
         image_label.grid(row=0, column=0, columnspan=3)
-        # Deleting the old file name label.
         file_name_label.destroy()
-        # Re-creating the label and setting the correct value.
         file_name_label = Label(root, text=file_names[index])
-        # Displaying the label on the screen.
         file_name_label.grid(row=1, column=0, columnspan=3)
-        # Deleting the old image number label.
         image_number.destroy()
-        # Re-creating the label and setting the correct value.
         image_number = Label(root,
                              text='Image {0} of {1}'.format(index+1,
                                                             len(image_list)))
-        # Displaying the label on the screen.
         image_number.grid(row=3, column=0, columnspan=3, sticky=W + E)
 
     """
@@ -126,41 +106,30 @@ def change_image(change):
     next step, the program will display the next image.
     """
     if change == 'f' and index + 1 < len(image_list):
-        # Remove the old image.
         image_label.grid_forget()
-        # Increase index by 1.
         index += 1
         """
         Re-create the label displaying images and display the next
         image in the list.
         """
         image_label = Label(image=image_list[index])
-        # Display the label on the window.
         image_label.grid(row=0, column=0, columnspan=3)
-        # Deleting the old file name label.
         file_name_label.destroy()
-        # Re-creating the label and setting the correct value.
         file_name_label = Label(root, text=file_names[index])
-        # Displaying the label on the screen.
         file_name_label.grid(row=1, column=0, columnspan=3)
-        # Deleting the old image number label.
         image_number.destroy()
-        # Re-creating the label and setting the correct value.
         image_number = Label(root,
                              text='Image {0} of {1}'.format(index+1,
                                                             len(image_list)))
-        # Displaying the label on the screen.
         image_number.grid(row=3, column=0, columnspan=3, sticky=W + E)
 
 
-# Creating buttons that will let user view images.
 button_backward = Button(root, text='<<', padx=20, pady=20,
                          command=lambda: change_image('b'))
 button_exit = Button(root, text='EXIT', padx=20, pady=20, command=root.quit)
 button_forward = Button(root, text='>>', padx=20, pady=20,
                         command=lambda: change_image('f'))
 
-# Displaying all elements on the window.
 image_label.grid(row=0, column=0, columnspan=3)
 file_name_label.grid(row=1, column=0, columnspan=3)
 button_backward.grid(row=2, column=0)
@@ -168,5 +137,4 @@ button_exit.grid(row=2, column=1)
 button_forward.grid(row=2, column=2)
 image_number.grid(row=3, column=0, columnspan=3, sticky=W + E)
 
-# The main program loop.
 root.mainloop()
